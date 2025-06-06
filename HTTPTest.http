@@ -1,0 +1,66 @@
+### Register User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Edibily Samwely",
+  "email": "user3@example.com",
+  "password": "password123",
+  "phone": "0764175337",
+  "role": "family"
+}
+### login User
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+### Auth Token after login
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQyZWI0NDdkMTMwY2U0NDYzMThjM2QiLCJyb2xlIjoiZmFtaWx5IiwiaWF0IjoxNzQ5MjE2MjYxLCJleHAiOjE3NDkzMDI2NjF9.TdzjI3VqzgO7F636JOklWO29iwNNXv3abCZizXc1C7I
+
+#***************** Device API  *****************#
+### Register new Device
+POST http://localhost:5000/api/devices
+X-Auth-Token: {{token}}
+Content-Type: application/json
+
+{
+  "macAddress": "AC23VF12NBHv",
+  "owner": "Edibily Samwely",
+  "name": "Mobile",
+  "deviceId": "123444f"
+}
+
+### Get Device info => id
+GET http://localhost:5000/api/devices/6842f184c901f22f2c4b503e
+X-Auth-Token: {{token}}
+
+### Get Device health data => id
+GET http://localhost:5000/api/devices/6842f184c901f22f2c4b503e/health
+X-Auth-Token: {{token}}
+
+#***************** Emergency Alerts API  *****************#
+### Get Emergencies data
+GET http://localhost:5000/api/emergencies
+X-Auth-Token: {{token}}
+
+### Get Specific Emergency data => id
+GET http://localhost:5000/api/emergencies/6842f184c901f22f2c4b503e
+X-Auth-Token: {{token}}
+
+### Update Emergency data => id
+PUT http://localhost:5000/api/emergencies/6842f184c901f22f2c4b503e/status
+X-Auth-Token: {{token}}
+
+#***************** Health Data API  *****************#
+
+### Get Health data => deviceId
+GET http://localhost:5000/api/health/6842f184c901f22f2c4b503e
+X-Auth-Token: {{token}}
+
+### Get Health Summary => deviceId
+GET http://localhost:5000/api/health/6842f184c901f22f2c4b503e/summary
+X-Auth-Token: {{token}}
