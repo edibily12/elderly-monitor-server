@@ -67,7 +67,7 @@ exports.getHealthSummary = async (req, res) => {
             return res.status(404).json({ message: 'Device not found' });
         }
 
-        // Get latest health data
+        // Get the latest health data
         const latestData = await HealthData.findOne({ device: device._id })
             .sort({ timestamp: -1 });
 

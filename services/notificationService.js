@@ -5,11 +5,11 @@ const twilio = require('twilio');
 
 // Initialize Firebase Admin SDK
 // TODO: Add proper Firebase service account key file
-// const serviceAccount = require('../path/to/serviceAccountKey.json');
-// 
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount)
-// });
+const serviceAccount = require('../serviceAcc.json');
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
 
 // Initialize Twilio
 let twilioClient;
@@ -42,9 +42,9 @@ exports.sendEmergencyNotification = async (user, emergency) => {
 
         // Send to user's FCM token
         // TODO: Uncomment when Firebase is properly configured
-        // if (user.fcmToken) {
-        //     await admin.messaging().sendToDevice(user.fcmToken, payload);
-        // }
+        if (user.fcmToken) {
+            await admin.messaging().sendToDevice(user.fcmToken, payload);
+        }
 
         // Send SMS to a user's phone
         if (twilioClient && process.env.TWILIO_PHONE_NUMBER) {
@@ -66,15 +66,15 @@ exports.sendEmergencyNotification = async (user, emergency) => {
 exports.sendHealthAlert = async (user, message) => {
     try {
         // TODO: Uncomment when Firebase is properly configured
-        // if (user.fcmToken) {
-        //     await admin.messaging().sendToDevice(user.fcmToken, {
-        //         notification: {
-        //             title: 'Health Alert',
-        //             body: message,
-        //             sound: 'default'
-        //         }
-        //     });
-        // }
+        if (user.fcmToken) {
+            await admin.messaging().sendToDevice(user.fcmToken, {
+                notification: {
+                    title: 'Health Alert',
+                    body: message,
+                    sound: 'default'
+                }
+            });
+        }
     } catch (err) {
         console.error('Health alert notification error:', err);
     }

@@ -3,10 +3,10 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "name": "Edibily Samwely",
-  "email": "user3@example.com",
+  "name": "test user",
+  "email": "test@example.com",
   "password": "password123",
-  "phone": "0764175337",
+  "phone": "0764175336",
   "role": "family"
 }
 ### login User
@@ -14,12 +14,12 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "user@example.com",
+  "email": "test@example.com",
   "password": "password123"
 }
 
 ### Auth Token after login
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQyZWI0NDdkMTMwY2U0NDYzMThjM2QiLCJyb2xlIjoiZmFtaWx5IiwiaWF0IjoxNzQ5MjE2MjYxLCJleHAiOjE3NDkzMDI2NjF9.TdzjI3VqzgO7F636JOklWO29iwNNXv3abCZizXc1C7I
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQyZWI0NDdkMTMwY2U0NDYzMThjM2QiLCJyb2xlIjoiZmFtaWx5IiwiaWF0IjoxNzQ5NDY3MDY4LCJleHAiOjE3NDk1NTM0Njh9.equS4AdO3bFLO8XIrnAvrpFwsf3U-CHfQr7Ee7wvBIw
 
 #***************** Device API  *****************#
 ### Register new Device
@@ -28,18 +28,18 @@ X-Auth-Token: {{token}}
 Content-Type: application/json
 
 {
-  "macAddress": "AC23VF12NBHv",
-  "owner": "Edibily Samwely",
-  "name": "Mobile",
-  "deviceId": "123444f"
+  "macAddress": "AC23VF12NBHg",
+  "owner": "test user",
+  "name": "laptop",
+  "deviceId": "123444h"
 }
 
 ### Get Device info => id
-GET http://localhost:5000/api/devices/6842f184c901f22f2c4b503e
+GET http://localhost:5000/api/devices/6846c300635333ea0d2bd0ea
 X-Auth-Token: {{token}}
 
 ### Get Device health data => id
-GET http://localhost:5000/api/devices/6842f184c901f22f2c4b503e/health
+GET http://localhost:5000/api/devices/6846c300635333ea0d2bd0ea/health
 X-Auth-Token: {{token}}
 
 #***************** Emergency Alerts API  *****************#

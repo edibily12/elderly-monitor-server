@@ -14,6 +14,7 @@ dotenv.config();
 const connectDB = require('./config/db');
 connectDB();
 
+
 // Route files
 const authRoutes = require('./routes/authRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
@@ -22,6 +23,9 @@ const healthRoutes = require('./routes/healthRoutes');
 
 // Initialize express
 const app = express();
+
+app.use(express.json)
+app.use(express.urlencoded({ extended: true }))
 
 // Rate limiting
 const limiter = rateLimit({
@@ -56,6 +60,7 @@ app.use('/api/health', healthRoutes);
 // Error handling middleware
 const errorHandler = require('./middleware/errorHandler');
 app.use(errorHandler);
+
 
 const PORT = process.env.PORT || 5000;
 
