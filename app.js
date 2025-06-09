@@ -24,8 +24,8 @@ const healthRoutes = require('./routes/healthRoutes');
 // Initialize express
 const app = express();
 
-app.use(express.json)
-app.use(express.urlencoded({ extended: true }))
+// app.use(express.json)
+// app.use(express.urlencoded({ extended: true }))
 
 // Rate limiting
 const limiter = rateLimit({
